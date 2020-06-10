@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
   resources :egg_bundles
-  resources :flocks
+  resources :flocks do
+    resources :egg_bundles
+  end
 end
