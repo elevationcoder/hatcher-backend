@@ -1,3 +1,3 @@
 class FlockSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :name, :breed, :quantity, :diet
 end
