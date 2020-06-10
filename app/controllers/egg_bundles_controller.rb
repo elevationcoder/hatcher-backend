@@ -5,7 +5,7 @@ class EggBundlesController < ApplicationController
   def index
     @egg_bundles = EggBundle.all
 
-    render json: @egg_bundles
+    render json: @egg_bundles, include: :flock
   end
 
   # GET /egg_bundles/1
@@ -18,7 +18,7 @@ class EggBundlesController < ApplicationController
     @egg_bundle = EggBundle.new(egg_bundle_params)
 
     if @egg_bundle.save
-      render json: @egg_bundle, status: :created, location: @egg_bundle
+      render json: @egg_bundle, include: :flock, status: :created, location: @egg_bundle
     else
       render json: @egg_bundle.errors, status: :unprocessable_entity
     end

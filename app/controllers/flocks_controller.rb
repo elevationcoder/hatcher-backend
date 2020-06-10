@@ -5,7 +5,7 @@ class FlocksController < ApplicationController
   def index
     @flocks = Flock.all
 
-    render json: @flocks
+    render json: @flocks, include: :egg_bundles
   end
 
   # GET /flocks/1
@@ -18,7 +18,7 @@ class FlocksController < ApplicationController
     @flock = Flock.new(flock_params)
 
     if @flock.save
-      render json: @flock, status: :created, location: @flock
+      render json: @flock, include: :egg_bundles, status: :created, location: @flock
     else
       render json: @flock.errors, status: :unprocessable_entity
     end
