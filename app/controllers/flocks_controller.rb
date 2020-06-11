@@ -15,6 +15,7 @@ class FlocksController < ApplicationController
 
   # POST /flocks
   def create
+    # binding.pry
     @flock = Flock.new(flock_params)
 
     if @flock.save
