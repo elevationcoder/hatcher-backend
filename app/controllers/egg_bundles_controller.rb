@@ -15,7 +15,7 @@ class EggBundlesController < ApplicationController
 
   # POST /egg_bundles
   def create
-    @egg_bundle = EggBundle.new(egg_bundle_params)
+    @egg_bundle = Flock.find(params[:flock_id]).egg_bundles.build(egg_bundle_params)
 
     if @egg_bundle.save
       render json: @egg_bundle, include: :flock, status: :created, location: @egg_bundle
@@ -44,8 +44,12 @@ class EggBundlesController < ApplicationController
       @egg_bundle = EggBundle.find(params[:id])
     end
 
+    def set_flock
+      @flock = Flock.find(params[:flock_id])
+    end
+
     # Only allow a trusted parameter "white list" through.
     def egg_bundle_params
-      params.require(:egg_bundle).permit(:amount, :amount_fertilized, :amount_hatched, :start_date, :first_hatch, :init_temp, :init_humid, :lockdown_temp, :lockdown_humid)
+      params.require(:egg_bundle).permit(:amount, :batch_number, :flock_id, :amount_fertilized, :amount_hatched, :start_date, :first_hatch, :init_temp, :init_humid, :lockdown_temp, :lockdown_humid)
     end
 end
