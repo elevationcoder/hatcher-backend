@@ -35,7 +35,10 @@ class EggBundlesController < ApplicationController
 
   # DELETE /egg_bundles/1
   def destroy
+    @flock = Flock.find(@egg_bundle.flock_id)
     @egg_bundle.destroy
+    render json: @flock
+    # binding.pry
   end
 
   private
