@@ -15,6 +15,7 @@ class EggBundlesController < ApplicationController
 
   # POST /egg_bundles
   def create
+    # binding.pry
     @egg_bundle = Flock.find(params[:flock_id]).egg_bundles.build(egg_bundle_params)
     # @flock = Flock.find(@egg_bundle.flock_id)
     if @egg_bundle.save
